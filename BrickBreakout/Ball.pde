@@ -5,12 +5,15 @@ class Ball {
   float Ball_x_speed = Ball_speed_base;
   float Ball_y_speed = Ball_speed_base;
   int Ball_color;
+  int Ball_number;
+  int Ball_died=1;
   //float F_Racket_location;
   
   Ball() {
 
     x = F_Racket_x_position_mid;
     y = F_Racket_y_position_mid - F_Racket_hight - 10 ;
+    Ball_number = I_ball_num;
   }
   
   void Ball_update() {
@@ -79,15 +82,14 @@ class Ball {
     if (y-10 < 0) {
       Ball_y_speed = -Ball_y_speed;
     }
-
-    
-    
-    if (y+10 > height) {    //ball died~~
-      ball = new Ball[1];
-      ball[0] = new Ball();
+    if (y+10 > height) {
+       Ball_died=0;
+       Ball_y_speed = -Ball_y_speed;
     }
     
+    
   }
+  
   
   void Ball_show() {
     fill(Ball_color,0,0);
@@ -96,7 +98,5 @@ class Ball {
     Ball_color = 255;
     
     //ellipse(F_Racket_location, height-F_Racket_y_position+F_Racket_hight/2, 10, 10);
-    
-    
   }
 }
