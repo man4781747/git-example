@@ -8,7 +8,7 @@ void BallDistroy() {
     }
   }
   
-  println(Ball_num_list.size());
+  //println(Ball_num_list.size());
   Ball[] ball_ = new Ball[Ball_num_list.size()];
   int j = 0;
   for (int i=0 ; i < ball.length ;i++) {

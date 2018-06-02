@@ -1,4 +1,6 @@
 class Brick {
+  private float ball_speed_x_Brick;
+  private float ball_speed_y_Brick;
   float F_Bk_x;
   float F_Bk_y;
   float F_Ball_distand;
@@ -19,9 +21,13 @@ class Brick {
          2*F_bk_L,2*F_bk_H);
   }
   
-  void Brick_ball_distand(float F_Ball_x,float F_Ball_y) {
+  void Brick_ball_distand(float F_Ball_x,float F_Ball_y,float F_ball_speed_x,float F_ball_speed_y) {
      F_Ball_distand =  sqrt(pow(F_Bk_x-F_Ball_x,2)+pow(F_Bk_y-F_Ball_y,2));
      F_bk_circle = sqrt(pow(F_bk_H,2)+pow(F_bk_L,2));
+     
+     ball_speed_x_Brick = F_ball_speed_x;
+     ball_speed_y_Brick = F_ball_speed_y;
+     
      if (F_Ball_distand <= 3*(F_bk_circle+10) ){   
        float F_close_position_y;
        float F_close_position_x;
@@ -54,21 +60,30 @@ class Brick {
        }
        stroke(255,0,255);
        line(F_Ball_x,F_Ball_y,F_close_position_x,F_close_position_y); 
-       /*
+       
+       
        if (
-         sqrt(pow(F_close_position_x-x,2)+pow(F_close_position_y-y,2)) <= 10
+         sqrt(pow(F_close_position_x-F_Ball_x,2)+pow(F_close_position_y-F_Ball_y,2)) <= 10
        ) {
           switch(I_x_case) {
             case 1:
-              Ball_x_speed = -Ball_x_speed;
+              ball_speed_x_Brick = -F_ball_speed_x;
           }
           switch(I_y_case) {
             case 1:
-              Ball_y_speed = -Ball_y_speed;
+              
+              ball_speed_y_Brick = -F_ball_speed_y;
           }
-       
        }
-     */
     }
   }
+  
+  float get_speed_x_Brick() {
+    return  ball_speed_x_Brick;
+  }
+  
+  float get_speed_y_Brick() {
+    return  ball_speed_y_Brick;
+  }  
+  
 }

@@ -2,14 +2,12 @@ Racket[] racket = new Racket[1];
 Ball[] ball = new Ball[1];
 Brick[] brick = new Brick[1];
 
-//ArrayList Ball_num_list=new ArrayList();
-
 float F_keybord_press=0;
 float F_Racket_x_position_mid;      
 float F_Racket_long = 50.0;
 float F_Racket_hight = 10.0;
 float F_Racket_y_position_mid = 500.0;
-float Ball_speed_base = 1;
+float Ball_speed_base = 5;
 int I_ball_num;
 
 void setup() {
@@ -62,14 +60,18 @@ void draw() {
   
   for (int i=0; i < ball.length;i++) {
     ball[i].Ball_update();
-    racket[0].Racket_ball_distand(ball[i].x,ball[i].y);
+
+    racket[0].Racket_ball_distand(ball[i].x,ball[i].y,ball[i].Ball_x_speed,ball[i].Ball_y_speed);
+    ball[i].Ball_y_speed = racket[0].get_speed_y();
+    ball[i].Ball_x_speed = racket[0].get_speed_x();
   }
 
   for (int j=0; j < brick.length;j++) {
      brick[j].Brick_build();
      for (int i=0; i < ball.length;i++) {
-         brick[j].Brick_ball_distand(ball[i].x,ball[i],ball[i].Ball_x_speed,ball[i].Ball_y_speed);
-    //ball[i].Ball_show();
+         brick[j].Brick_ball_distand(ball[i].x,ball[i].y,ball[i].Ball_x_speed,ball[i].Ball_y_speed);
+         ball[i].Ball_y_speed = brick[0].get_speed_y_Brick();
+         ball[i].Ball_x_speed = brick[0].get_speed_x_Brick();
      }
   }
   

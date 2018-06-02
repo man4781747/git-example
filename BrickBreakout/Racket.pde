@@ -1,6 +1,6 @@
-
-
 class Racket {
+   private float ball_speed_test_x;
+   private float ball_speed_test_y;
    float F_Racket_x;
    float F_rt_circle;
    float F_Ball_distand;
@@ -33,9 +33,11 @@ class Racket {
      
    }
    
-  void Racket_ball_distand(float F_Ball_x,float F_Ball_y,float F_Ball_speed_x,float F_Ball_speed_y) {
+  void Racket_ball_distand(float F_Ball_x,float F_Ball_y,float F_ball_speed_x,float F_ball_speed_y) {
      F_Ball_distand =  sqrt(pow(F_Racket_x-F_Ball_x,2)+pow(F_Racket_y-F_Ball_y,2));
      F_rt_circle = sqrt(pow(F_Racket_hight,2)+pow(F_Racket_long,2));
+     ball_speed_test_x = F_ball_speed_x;
+     ball_speed_test_y = F_ball_speed_y;
      if (F_Ball_distand <= 3*(F_rt_circle+10) ){   
        float F_close_position_y;
        float F_close_position_x;
@@ -69,12 +71,29 @@ class Racket {
        stroke(255,0,255);
        line(F_Ball_x,F_Ball_y,F_close_position_x,F_close_position_y); 
        
-       
-       
+       if (
+         sqrt(pow(F_close_position_x-F_Ball_x,2)+pow(F_close_position_y-F_Ball_y,2)) <= 10
+       ) {
+          switch(I_x_case) {
+            case 1:
+              ball_speed_test_x = -F_ball_speed_x;
+          }
+          switch(I_y_case) {
+            case 1:
+              
+              ball_speed_test_y = -F_ball_speed_y;
+          }
+       }
        
      }
   }
   
-   
-   
+  float get_speed_x() {
+    return  ball_speed_test_x;
+  }
+  
+  float get_speed_y() {
+    return  ball_speed_test_y;
+  }
+  
 }
