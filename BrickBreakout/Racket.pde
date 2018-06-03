@@ -1,6 +1,6 @@
 class Racket {
-   private float ball_speed_test_x;
-   private float ball_speed_test_y;
+   private float ball_speed_x_Racket;
+   private float ball_speed_y_Racket;
    float F_Racket_x;
    float F_rt_circle;
    float F_Ball_distand;
@@ -36,9 +36,9 @@ class Racket {
   void Racket_ball_distand(float F_Ball_x,float F_Ball_y,float F_ball_speed_x,float F_ball_speed_y) {
      F_Ball_distand =  sqrt(pow(F_Racket_x-F_Ball_x,2)+pow(F_Racket_y-F_Ball_y,2));
      F_rt_circle = sqrt(pow(F_Racket_hight,2)+pow(F_Racket_long,2));
-     ball_speed_test_x = F_ball_speed_x;
-     ball_speed_test_y = F_ball_speed_y;
-     if (F_Ball_distand <= 3*(F_rt_circle+10) ){   
+     ball_speed_x_Racket = F_ball_speed_x;
+     ball_speed_y_Racket = F_ball_speed_y;
+     if (F_Ball_distand <= 1.5*(F_rt_circle+10) ){   
        float F_close_position_y;
        float F_close_position_x;
        int I_x_case;
@@ -76,18 +76,18 @@ class Racket {
        ) {
           switch(I_x_case) {
             case 1:
-              ball_speed_test_x = -F_ball_speed_x;
+              ball_speed_x_Racket = -F_ball_speed_x;
           }
           switch(I_y_case) {
             case 1:
               
-              ball_speed_test_y = -F_ball_speed_y;
+              ball_speed_y_Racket = -F_ball_speed_y;
           }
        }
        
      }
   }
-  
+  /*
   float get_speed_x() {
     return  ball_speed_test_x;
   }
@@ -95,5 +95,5 @@ class Racket {
   float get_speed_y() {
     return  ball_speed_test_y;
   }
-  
+  */
 }

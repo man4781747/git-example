@@ -7,14 +7,16 @@ class Ball {
   int Ball_color;
   int Ball_number;
   int Ball_died=1;
+  String S_Ball_status;
   //float F_Racket_location;
   
-  Ball() {
+  Ball(String S_Ball_status_input='normal') {
     Ball_x_speed = Ball_speed_base;
     Ball_y_speed = Ball_speed_base;
     x = F_Racket_x_position_mid;
     y = F_Racket_y_position_mid - F_Racket_hight - 10 ;
     Ball_number = I_ball_num;
+    S_Ball_status = S_Ball_status_input;
   }
   
   void Ball_update() {

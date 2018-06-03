@@ -7,7 +7,7 @@ class Brick {
   float F_bk_circle;
   float F_bk_H = 20;
   float F_bk_L = 50;
-  
+  int I_brick_died=1;
   
   public Brick(float F_Bk_x,float F_Bk_y) {
     this.F_Bk_x = F_Bk_x;
@@ -28,7 +28,7 @@ class Brick {
      ball_speed_x_Brick = F_ball_speed_x;
      ball_speed_y_Brick = F_ball_speed_y;
      
-     if (F_Ball_distand <= 3*(F_bk_circle+10) ){   
+     if (F_Ball_distand <= 1.5*(F_bk_circle+10) ){   
        float F_close_position_y;
        float F_close_position_x;
        int I_x_case;
@@ -65,6 +65,7 @@ class Brick {
        if (
          sqrt(pow(F_close_position_x-F_Ball_x,2)+pow(F_close_position_y-F_Ball_y,2)) <= 10
        ) {
+          I_brick_died=0;
           switch(I_x_case) {
             case 1:
               ball_speed_x_Brick = -F_ball_speed_x;
@@ -78,6 +79,7 @@ class Brick {
     }
   }
   
+  /*
   float get_speed_x_Brick() {
     return  ball_speed_x_Brick;
   }
@@ -85,5 +87,5 @@ class Brick {
   float get_speed_y_Brick() {
     return  ball_speed_y_Brick;
   }  
-  
+  */
 }
