@@ -20,15 +20,21 @@ Brick[] brick = new Brick[0];
 
 float F_keybord_press=0;
 float F_Racket_x_position_mid;      
-float F_Racket_long = 50.0f;
-float F_Racket_hight = 10.0f;
-float F_Racket_y_position_mid = 100.0f;
+float F_Racket_long;
+float F_Racket_hight;
+float F_Racket_y_position_mid;
 float Ball_speed_base = 3;
 int I_ball_num;
 
 
 
 public void setup() {
+  //size(displayWidth, displayHeight);
+  
+  
+  F_Racket_long = width/20;
+  F_Racket_hight = height/100;
+  F_Racket_y_position_mid = height/100;
   
   F_Racket_y_position_mid = height - F_Racket_y_position_mid;
   F_Racket_x_position_mid = width/2;
@@ -40,8 +46,8 @@ public void setup() {
   Base_Brick_y = new float[5][8];
   for (int i = 0;i<Base_Brick_x.length;i++) {
     for (int j = 0;j<Base_Brick_x[i].length;j++) {
-      Base_Brick_x[i][j] = 60+125*j;
-      Base_Brick_y[i][j] = 55+55*i;
+      Base_Brick_x[i][j] = width/16+width/8*j;
+      Base_Brick_y[i][j] = height/100+height/20*(i+1);
     }
   }
   Brick[] brick_ = new Brick[Base_Brick_x.length*Base_Brick_x[0].length];
@@ -204,8 +210,8 @@ class Brick {
   float F_Bk_y;
   float F_Ball_distand;
   float F_bk_circle;
-  float F_bk_H = 20;
-  float F_bk_L = 50;
+  float F_bk_H = height/50;
+  float F_bk_L = width*0.9f/16;
   int I_brick_died=1;
   float F_ele;
   int I_color_r=round(156*random(1)+100);
@@ -468,7 +474,7 @@ class Racket {
   }
 
 }
-  public void settings() {  size(1000,1000); }
+  public void settings() {  fullScreen(); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "--present", "--window-color=#666666", "--stop-color=#cccccc", "BrickBreakout" };
     if (passedArgs != null) {

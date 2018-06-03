@@ -5,8 +5,8 @@ class Brick {
   float F_Bk_y;
   float F_Ball_distand;
   float F_bk_circle;
-  float F_bk_H = 20;
-  float F_bk_L = 50;
+  float F_bk_H = height/50;
+  float F_bk_L = width*0.9/16;
   int I_brick_died=1;
   float F_ele;
   int I_color_r=round(156*random(1)+100);
