@@ -68,12 +68,12 @@ class Racket {
           F_close_position_x = F_Ball_x;
           I_x_case = 0;
        }
-       /*
+       
        stroke(255,0,255);
        line(F_Ball_x,F_Ball_y,F_close_position_x,F_close_position_y); 
        stroke(255,255,125);
        line(F_Ball_x,F_Ball_y,F_Ball_x-ball_speed_x_Racket*10,F_Ball_y-ball_speed_y_Racket*10); 
-       */
+       
        float RandR_distance = sqrt(pow(F_close_position_x-F_Ball_x,2)+pow(F_close_position_y-F_Ball_y,2));
        
        float[] F_unit_vector;
@@ -86,23 +86,22 @@ class Racket {
        F_Normal_vector[0] = (F_unit_vector[0]*ball_speed_x_Racket+F_unit_vector[1]*ball_speed_y_Racket)*F_unit_vector[0];
        F_Normal_vector[1] = (F_unit_vector[0]*ball_speed_x_Racket+F_unit_vector[1]*ball_speed_y_Racket)*F_unit_vector[1];
        
-       /*
+       
        stroke(255,125,125);
        line(F_Ball_x,F_Ball_y,
             F_Ball_x+5*F_Normal_vector[0],F_Ball_y+5*F_Normal_vector[1]); 
-       */
+       
        
        float[] F_Tangent_vector;
        F_Tangent_vector = new float[2];
        F_Tangent_vector[0] = -ball_speed_x_Racket+F_Normal_vector[0];
        F_Tangent_vector[1] = -ball_speed_y_Racket+F_Normal_vector[1];
        
-       /*
+       
        stroke(255,125,125);
        line(F_Ball_x-5*F_Tangent_vector[0],F_Ball_y-5*F_Tangent_vector[1],
             F_Ball_x+5*F_Tangent_vector[0],F_Ball_y+5*F_Tangent_vector[1]); 
-            */
-       
+            
        if (
          RandR_distance < 9
        ) {

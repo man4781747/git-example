@@ -16,8 +16,17 @@ void BrickDistroy() {
          brick_[j] = brick[i];
          j = j +1;
       }
+      /*
+      else {
+        minim_hit = new Minim(this);
+        hit_player = minim.loadFile("hit.mp3", 2048);
+        hit_player.play();
+      }
+      */
+      
     }
     
     brick = brick_;
+    
   }
 }

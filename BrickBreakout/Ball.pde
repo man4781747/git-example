@@ -2,6 +2,8 @@
 class Ball {
   float x;
   float y;
+  float x_;
+  float y_;
   float Ball_x_speed;
   float Ball_y_speed;
   int Ball_color;
@@ -20,9 +22,10 @@ class Ball {
   }
   
   void Ball_update() {
+    x_ = x;
+    y_ = y;
     x = x - Ball_x_speed;
     y = y - Ball_y_speed;
-
     if (S_Ball_status=="Stuck") {
        x = mouseX;
        y = F_Racket_y_position_mid - F_Racket_hight-9;

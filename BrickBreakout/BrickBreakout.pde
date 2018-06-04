@@ -1,3 +1,12 @@
+import ddf.minim.*;
+AudioPlayer background_player;
+AudioPlayer fire_player;
+AudioPlayer hit_player;
+Minim minim_hit;
+Minim minim_fire;
+Minim minim;//audio context
+
+
 Racket[] racket = new Racket[1];
 Ball[] ball = new Ball[0];
 Brick[] brick = new Brick[0];
@@ -7,14 +16,19 @@ float F_Racket_x_position_mid;
 float F_Racket_long;
 float F_Racket_hight;
 float F_Racket_y_position_mid;
-float Ball_speed_base = 3;
-int I_ball_num; //<>//
+float Ball_speed_base = 12;
+int I_ball_num;
 
 
 
 void setup() {
-  //size(displayWidth, displayHeight);
-  fullScreen();
+  minim = new Minim(this);
+  background_player = minim.loadFile("background.mp3", 2048);
+  //background_player.loop();
+  
+  
+  size(1000, 1000);
+  //fullScreen();
   
   F_Racket_long = width/20;
   F_Racket_hight = height/100;
@@ -50,6 +64,12 @@ void setup() {
 void keyPressed() {
   if (key==' '){
     
+    /*
+    minim_fire = new Minim(this);
+    fire_player = minim.loadFile("fire.mp3", 2048);
+    fire_player.play();
+    */
+    
     if (ball.length==1 & ball[0].S_Ball_status == "Stuck") {
       ball[0].S_Ball_status = "normal";
     }
@@ -69,7 +89,7 @@ void keyPressed() {
     for (int i=0; i < brick.length;i++) {
        brick_[i] = brick[i];
     }
-    brick_[brick.length] = new Brick(mouseX,mouseY,random(1)*360);
+    brick_[brick.length] = new Brick(mouseX,mouseY,0);
     brick = brick_;
   }
   
@@ -99,16 +119,21 @@ void draw() {
   for (int i=0; i < ball.length;i++) {
     ball[i].Ball_update();
 
-    racket[0].Racket_ball_distand(ball[i].x,ball[i].y,ball[i].Ball_x_speed,ball[i].Ball_y_speed);
+    racket[0].Racket_ball_distand(ball[i].x,ball[i].y,
+                                  ball[i].Ball_x_speed,ball[i].Ball_y_speed);
     ball[i].Ball_y_speed = racket[0].ball_speed_y_Racket;
     ball[i].Ball_x_speed = racket[0].ball_speed_x_Racket;
   }
   for (int j=0; j < brick.length;j++) {
      brick[j].Brick_build();
      for (int i=0; i < ball.length;i++) {
-         brick[j].Brick_ball_distand(ball[i].x,ball[i].y,ball[i].Ball_x_speed,ball[i].Ball_y_speed);
+         brick[j].Brick_ball_distand(ball[i].x,ball[i].y,
+                                     ball[i].x_,ball[i].y_,
+                                     ball[i].Ball_x_speed,ball[i].Ball_y_speed);
          ball[i].Ball_y_speed = brick[j].ball_speed_y_Brick;
          ball[i].Ball_x_speed = brick[j].ball_speed_x_Brick;
+         ball[i].x = brick[j].F_fix_x_position;
+         ball[i].y = brick[j].F_fix_y_position;
      }
   }
   
