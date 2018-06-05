@@ -137,10 +137,10 @@ int BKandBK_HitOrNotHit(float[] F_thing_a_x,float[] F_thing_a_y,float[] F_thing_
       F_break = 1;
     }
     if (F_break == 0){
-      return 1;
+      return 0;
     }
   }
   
   
-  return 0;
+  return 1;
 }
