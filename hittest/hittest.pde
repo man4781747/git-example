@@ -16,13 +16,16 @@ float[] F_base_bk_x;
 float[] F_base_bk_y;
 float[] F_base_bl_x;
 float[] F_base_bl_y;
-float[] F_mouse_bk_x;
-float[] F_mouse_bk_y;
+float[] F_mouse_bk_1_x;
+float[] F_mouse_bk_1_y;
+float[] F_mouse_bk_2_x;
+float[] F_mouse_bk_2_y;
 float[] F_mouse_bl_x;
 float[] F_mouse_bl_y;
 
 float F_circle_speed = 0.5;
-int I_hit_b = 0;
+int I_hit_b_1 = 0;
+int I_hit_b_2 = 0;
 int I_hit_c1 = 0;
 int I_hit_c2 = 0;
 
@@ -59,7 +62,7 @@ void draw() {
   F_base_bk_y[2] = F_bk_y-F_bk_L*sin(F_ele_base)-F_bk_H*cos(F_ele_base);
   F_base_bk_y[3] = F_bk_y+F_bk_L*sin(F_ele_base)-F_bk_H*cos(F_ele_base);
   
-  fill(255,255-I_hit_b*255,255);
+  fill(255,255-I_hit_b_1*255,255);
   noStroke();
   quad(F_base_bk_x[0], F_base_bk_y[0],
        F_base_bk_x[1], F_base_bk_y[1],
@@ -79,9 +82,9 @@ void draw() {
   //ellipse(F_base_bl_x[1],F_base_bl_y[1],F_ball_r,F_ball_r);
   
   /* mouse */
-  F_mouse_bk_x = new float[4];
-  F_mouse_bk_y = new float[4];
-  
+  F_mouse_bk_1_x = new float[4];
+  F_mouse_bk_1_y = new float[4];
+  /*
   F_mouse_bk_x[0] = mouseX+F_bk_L*cos(F_ele_mouse)-F_bk_H*sin(F_ele_mouse);
   F_mouse_bk_x[1] = mouseX-F_bk_L*cos(F_ele_mouse)-F_bk_H*sin(F_ele_mouse);
   F_mouse_bk_x[2] = mouseX-F_bk_L*cos(F_ele_mouse)+F_bk_H*sin(F_ele_mouse);
@@ -91,13 +94,46 @@ void draw() {
   F_mouse_bk_y[1] = mouseY-F_bk_L*sin(F_ele_mouse)+F_bk_H*cos(F_ele_mouse);
   F_mouse_bk_y[2] = mouseY-F_bk_L*sin(F_ele_mouse)-F_bk_H*cos(F_ele_mouse);
   F_mouse_bk_y[3] = mouseY+F_bk_L*sin(F_ele_mouse)-F_bk_H*cos(F_ele_mouse);
+  */
+  F_mouse_bk_1_x[0] = mouseX+F_bk_L*cos(F_ele_mouse);
+  F_mouse_bk_1_x[1] = mouseX-F_bk_L*cos(F_ele_mouse);
+  F_mouse_bk_1_x[2] = mouseX-F_bk_L*cos(F_ele_mouse)+F_bk_H*sin(F_ele_mouse);
+  F_mouse_bk_1_x[3] = mouseX+F_bk_L*cos(F_ele_mouse)+F_bk_H*sin(F_ele_mouse);
   
-  fill(255,I_hit_b*255,0);
+  F_mouse_bk_1_y[0] = mouseY+F_bk_L*sin(F_ele_mouse);
+  F_mouse_bk_1_y[1] = mouseY-F_bk_L*sin(F_ele_mouse);
+  F_mouse_bk_1_y[2] = mouseY-F_bk_L*sin(F_ele_mouse)-F_bk_H*cos(F_ele_mouse);
+  F_mouse_bk_1_y[3] = mouseY+F_bk_L*sin(F_ele_mouse)-F_bk_H*cos(F_ele_mouse);
+  
+  F_mouse_bk_2_x = new float[4];
+  F_mouse_bk_2_y = new float[4];
+  
+  F_mouse_bk_2_x[0] = mouseX+F_bk_L*cos(F_ele_mouse);
+  F_mouse_bk_2_x[1] = mouseX-F_bk_L*cos(F_ele_mouse);
+  F_mouse_bk_2_x[2] = mouseX-F_bk_L*cos(F_ele_mouse)-F_bk_H*sin(F_ele_mouse);
+  F_mouse_bk_2_x[3] = mouseX+F_bk_L*cos(F_ele_mouse)-F_bk_H*sin(F_ele_mouse);
+  
+  F_mouse_bk_2_y[0] = mouseY+F_bk_L*sin(F_ele_mouse);
+  F_mouse_bk_2_y[1] = mouseY-F_bk_L*sin(F_ele_mouse);
+  F_mouse_bk_2_y[2] = mouseY-F_bk_L*sin(F_ele_mouse)+F_bk_H*cos(F_ele_mouse);
+  F_mouse_bk_2_y[3] = mouseY+F_bk_L*sin(F_ele_mouse)+F_bk_H*cos(F_ele_mouse);
+  
+  fill(255,I_hit_b_1*255,0);
   noStroke();
-  quad(F_mouse_bk_x[0], F_mouse_bk_y[0],
-       F_mouse_bk_x[1], F_mouse_bk_y[1],
-       F_mouse_bk_x[2], F_mouse_bk_y[2],
-       F_mouse_bk_x[3], F_mouse_bk_y[3]);
+  quad(F_mouse_bk_1_x[0], F_mouse_bk_1_y[0],
+       F_mouse_bk_1_x[1], F_mouse_bk_1_y[1],
+       F_mouse_bk_1_x[2], F_mouse_bk_1_y[2],
+       F_mouse_bk_1_x[3], F_mouse_bk_1_y[3]);
+  
+  fill(255,I_hit_b_2*255,0);
+  noStroke();
+  quad(F_mouse_bk_2_x[0], F_mouse_bk_2_y[0],
+       F_mouse_bk_2_x[1], F_mouse_bk_2_y[1],
+       F_mouse_bk_2_x[2], F_mouse_bk_2_y[2],
+       F_mouse_bk_2_x[3], F_mouse_bk_2_y[3]);
+  
+  
+  
   
   F_mouse_bl_x = new float[2];
   F_mouse_bl_y = new float[2]; 
@@ -115,7 +151,8 @@ void draw() {
   
   
   
-  I_hit_b = BKandBK_HitOrNotHit(F_base_bk_x,F_base_bk_y,F_mouse_bk_x,F_mouse_bk_y);
+  I_hit_b_1 = BKandBK_HitOrNotHit(F_base_bk_x,F_base_bk_y,F_mouse_bk_1_x,F_mouse_bk_1_y);
+  I_hit_b_2 = BKandBK_HitOrNotHit(F_base_bk_x,F_base_bk_y,F_mouse_bk_2_x,F_mouse_bk_2_y);
   I_hit_c1 = CandBK_HitOrNotHit(F_mouse_bl_x[0],F_mouse_bl_y[0],F_ball_r/2,F_base_bk_x,F_base_bk_y);
   I_hit_c2 = CandBK_HitOrNotHit(F_mouse_bl_x[1],F_mouse_bl_y[1],F_ball_r/2,F_base_bk_x,F_base_bk_y);
   
