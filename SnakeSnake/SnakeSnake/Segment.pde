@@ -55,16 +55,21 @@ class Segment {
     b.set(a.x+dx, a.y+dy);
   }
 
+  void check(float x, float y) {
+    if (sqrt(pow(b.x-x,2)+pow(b.y-y,2)) <len/2) {
+      parent = null;
+    }
+  }
+
   void update() {
     calculateB();
   }
-
 
   void show() {
     stroke(R,G,B);
     fill(B,R,G);
     //strokeWeight(sw);
-    ellipse(b.x, b.y,10,10);
+    ellipse(b.x, b.y,len,len);
     //line(a.x, a.y, b.x, b.y);
   }
 }
