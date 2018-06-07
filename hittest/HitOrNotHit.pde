@@ -56,7 +56,7 @@ int BKandBK_HitOrNotHit(float[] F_thing_a_x,float[] F_thing_a_y,float[] F_thing_
     
     for (int l=0;l<F_thing_a_x.length-1;l++) {
       int m = k+l+1;
-      if (m >= F_thing_a_x.length) {
+      while (m >= F_thing_a_x.length) {
         m = m - F_thing_a_x.length; 
       }
       F_check_a = (F_thing_a_x[m]-F_thing_a_x[k])*F_a_Normal_vector_x[k]+(F_thing_a_y[m]-F_thing_a_y[k])*F_a_Normal_vector_y[k];
@@ -65,7 +65,7 @@ int BKandBK_HitOrNotHit(float[] F_thing_a_x,float[] F_thing_a_y,float[] F_thing_
     
     for (int n=0;n<F_thing_b_x.length;n++) {
       int o = k+n+1;
-      if (o >= F_thing_b_x.length) {
+      while (o >= F_thing_b_x.length) {
         o = o - F_thing_b_x.length; 
       }
       F_check_b = (F_thing_b_x[o]-F_thing_a_x[k])*F_a_Normal_vector_x[k]+(F_thing_b_y[o]-F_thing_a_y[k])*F_a_Normal_vector_y[k];
