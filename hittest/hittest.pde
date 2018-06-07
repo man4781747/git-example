@@ -23,7 +23,7 @@ float[] F_mouse_bk_2_y;
 float[] F_mouse_bl_x;
 float[] F_mouse_bl_y;
 
-float F_circle_speed = 0.5;
+float F_circle_speed = 0;
 int I_hit_b_1 = 0;
 int I_hit_b_2 = 0;
 int I_hit_c1 = 0;
