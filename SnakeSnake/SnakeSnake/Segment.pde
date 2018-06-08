@@ -11,10 +11,16 @@ class Segment {
   Segment parent = null;
   Segment child = null;
   float sw = 0;
-
+  
   float R = random(1)*255;
   float G = random(1)*255;
   float B = random(1)*255;
+
+  int I_snake = 1;
+  
+  float F_random = random(1)*2*PI;
+  float F_died_speed_x = 5*sin(F_random);
+  float F_died_speed_y = 5*cos(F_random);
 
   Segment(float x, float y, float len_, float i) {
     a = new PVector(x, y);
@@ -32,7 +38,6 @@ class Segment {
     len = len_;
     calculateB();
   }
-
 
   void follow() {
     float targetX = child.a.x;
@@ -57,7 +62,8 @@ class Segment {
 
   void check(float x, float y) {
     if (sqrt(pow(b.x-x,2)+pow(b.y-y,2)) <len/2) {
-      parent = null;
+      //parent = null;
+      I_snake = 0;
     }
   }
 
@@ -65,6 +71,22 @@ class Segment {
     calculateB();
   }
 
+  void ball_died() {
+    b.x = b.x+F_died_speed_x;
+    b.y = b.y+F_died_speed_y;
+  }
+
+  void check_died() {
+    if (child.I_snake == 0) {
+      I_snake = 0;
+    }
+    
+    if (I_snake == 0 & parent== null &(b.x < 0 || b.x>width || b.y < 0 ||  b.y > height)) {
+      child.parent.parent = null;
+    }
+    
+  }
+  
   void show() {
     stroke(R,G,B);
     fill(B,R,G);
