@@ -7,6 +7,8 @@ class Qtree {
   boolean grow = false;
   int Size;
   Point[] PointInsideAll = new Point[0];
+  Point[] PointInsideAll_ = new Point[0];
+  Point[] PointOutsideAll = new Point[0];
   
   Qtree(float x_, float y_, float L_, float H_, int QtreeSize){
     x = x_;
@@ -16,22 +18,27 @@ class Qtree {
     Size = QtreeSize;
   }
   
-  void QtreePointIn(Point[] points){
+  Point[] QtreePointIn(Point[] points){
     for (int i=0;i<points.length;i++){
       if(IsPointInQtree(points[i])){
         PointInsideAll = PointObjAdd(PointInsideAll, points[i]);
+      } else {
+        PointOutsideAll = PointObjAdd(PointOutsideAll, points[i]);
       }
     }
     if (PointInsideAll.length > Size && !grow){
       QtreeGrow();
     } else {
-      stroke(255,0,0);
+      stroke(50);
       //fill(255,0,0);
       line(x+L, y+H, x-L, y+H);
       line(x-L, y+H, x-L, y-H);
       line(x-L, y-H, x+L, y-H);
       line(x+L, y-H, x+L, y+H);
     };
+    //PointInsideAll_ = PointInsideAll;
+    //PointOutsideAll = points;
+    return PointOutsideAll;
     //println(PointInsideAll.length);
   }
   
@@ -46,13 +53,13 @@ class Qtree {
   void QtreeGrow(){
     qtreesNE = new Qtree[1];
     qtreesNE[0] = new Qtree(x+L/2, H/2+y, L/2, H/2, Size);
-    qtreesNE[0].QtreePointIn(PointInsideAll);
+    PointInsideAll_ = qtreesNE[0].QtreePointIn(PointInsideAll);
     qtreesNW = new Qtree[1];
     qtreesNW[0] = new Qtree(x-L/2, H/2+y, L/2, H/2, Size);
-    qtreesNW[0].QtreePointIn(PointInsideAll);
+    PointInsideAll_ = qtreesNW[0].QtreePointIn(PointInsideAll);
     qtreesSE = new Qtree[1];
     qtreesSE[0] = new Qtree(x+L/2, -H/2+y, L/2, H/2, Size);
-    qtreesSE[0].QtreePointIn(PointInsideAll);
+    PointInsideAll_ = qtreesSE[0].QtreePointIn(PointInsideAll);
     qtreesSW = new Qtree[1];
     qtreesSW[0] = new Qtree(x-L/2, -H/2+y, L/2, H/2, Size);
     qtreesSW[0].QtreePointIn(PointInsideAll);

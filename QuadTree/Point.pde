@@ -10,7 +10,7 @@ class Point{
   
   void show() {
     noStroke();
-    fill(255);
+    fill(255,0,0);
     ellipse(x,y,r,r);
   }
   
