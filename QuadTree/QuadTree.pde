@@ -1,4 +1,5 @@
-Point[] points = new Point[1000];
+Point[] points = new Point[100];
+Qtree[] qtrees = new Qtree[1];
 
 void setup() {
   size(1000,1000);
@@ -12,9 +13,15 @@ void setup() {
 }
 
 void draw() {
+  noLoop();
   translate(width/2,height/2);
   background(0);
+  
+  qtrees[0] = new Qtree(0, 0, width/2, height/2, 4);
+  qtrees[0].QtreePointIn(points);
+  
   for (int i=0;i<points.length;i++){
     points[i].show();
   }
+  
 }
