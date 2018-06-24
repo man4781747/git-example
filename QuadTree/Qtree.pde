@@ -25,7 +25,7 @@ class Qtree {
     if (PointInsideAll.length > Size && !grow){
       QtreeGrow();
     } else {
-      stroke(255,0,0);
+      stroke(255);
       //fill(255,0,0);
       line(x+L, y+H, x-L, y+H);
       line(x-L, y+H, x-L, y-H);
